@@ -1,0 +1,71 @@
+{
+    "name": "DOTAVISION",
+    "productName": "DOTAVISION",
+    "version": "1.0.2",
+    "description": "Analysis applications for DOTA 2",
+    "main": "src/index.js",
+    "scripts": {
+        "start": "electron-forge start",
+        "package": "electron-forge package",
+        "make": "electron-forge make",
+        "publish": "electron-forge publish",
+        "lint": "eslint src --color"
+    },
+    "keywords": [],
+    "author": "DEEEZIGN",
+    "license": "MIT",
+    "config": {
+        "forge": {
+            "make_targets": {
+                "win32": [
+                    "squirrel"
+                ],
+                "darwin": [
+                    "zip"
+                ],
+                "linux": [
+                    "deb",
+                    "rpm"
+                ]
+            },
+            "electronPackagerConfig": {
+                "packageManager": "npm",
+                "asar": true,
+                "icon": "src/assets/images/dotavision.ico"
+            },
+            "electronWinstallerConfig": {
+                "name": "DOTAVISION",
+                "setupExe": "Setup.exe",
+                "description": "Analysis app for DOTA 2",
+                "iconUrl": "https://dotavision.ru/favicon.ico",
+                "loadingGif": "src/assets/images/loadinggif.gif",
+                "setupIcon": "src/assets/images/dotavision.ico",
+                "noMsi": true
+            },
+            "electronInstallerDebian": {},
+            "electronInstallerRedhat": {},
+            "github_repository": {
+                "owner": "DEEEZIGN",
+                "name": "DOTAVISION"
+            },
+            "windowsStoreConfig": {
+                "packageName": "",
+                "name": "dotavision"
+            }
+        }
+    },
+    "dependencies": {
+        "electron-compile": "^6.4.2",
+        "electron-settings": "^3.1.4",
+        "electron-squirrel-startup": "^1.0.0",
+        "mika": "^1.2.2",
+        "where-is-steam": "^0.1.1"
+    },
+    "devDependencies": {
+        "babel-plugin-transform-async-to-generator": "^6.24.1",
+        "electron-prebuilt-compile": "1.7.9",
+        "babel-preset-env": "^1.6.1",
+        "babel-preset-react": "^6.24.1",
+        "electron-forge": "^4.1.6"
+    }
+}

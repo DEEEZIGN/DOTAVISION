@@ -1,0 +1,165 @@
+#players-analisys-table
+	height 40px
+	line-height 40px
+	display table
+	width 100%
+	border-top 1px solid lighten(MainColor, 10%)
+
+	&:last-child
+		border-bottom 0px !important
+
+	&.players-analisys-table-header
+		background-color MainColor
+
+		& > div
+			color MainColorForward
+			border 0px
+
+	& > div
+		display table-cell
+		padding-left 20px
+		overflow hidden
+		border-right 1px solid lighten(MainColor, 10%)
+
+		&:last-child
+			border 0px
+
+		&:nth-child(1)
+			width 20%
+			min-width 200px
+			text-align left
+
+		&:nth-child(2)
+			width 10%
+			text-align left
+			min-width 150px
+
+		&:nth-child(3)
+			width 40%
+			position relative
+			text-align center
+
+		&:nth-child(4)
+			min-width 120px
+			max-width 120px
+			padding-right 20px
+			width 1%
+			text-align left
+
+	&.players-analisys-table-row
+		background-color MainColorForward
+		border-color lighten(MainColor, 80%)
+		border-top 0
+		border-bottom 1px solid lighten(MainColor, 90%)
+
+		& > div
+			color MainColor
+			font-weight 600
+			border-color lighten(MainColor, 90%)
+
+#players-analisys-name-ava
+	width 26px
+	height 26px
+	opacity 0.8
+	float left
+	background-color lighten(MainColor, 90%)
+	border-radius MainBorderRadius px
+	margin-top 7px
+	overflow hidden
+	margin-right 10px
+
+	& img
+		width 100%
+
+#players-analisys-name-text
+	display inline-block
+	font-weight 600
+	white-space nowrap
+	width -webkit-calc(100% - 50px)
+
+.players-analisys-links > a
+	display block
+	width 100%
+	height 26px
+	text-decoration none
+	text-align center
+	line-height 26px
+	border-radius MainBorderRadius px
+	color MainColorForward
+	background-color MainColor
+
+	&:hover
+		background-color lighten(MainColor, 10%)
+
+.borderfix
+	border-bottom 0 !important
+
+#players-analisys-team
+	display block
+	width 100%
+	height 100px
+	background-color lighten(MainColor, 90%)
+	line-height 60px
+	font-size 15px
+	padding 20px
+
+#players-analisys-mph
+	position absolute
+	left 0px
+	text-align center
+	top 11.5px
+	white-space nowrap
+	width 100%
+	height 17px
+	padding 0 20px
+	line-height 20px
+	overflow hidden
+
+	& > img
+		height 17px
+		opacity 0.8
+		margin-right 5px
+
+#players-analisys-team > span
+	float left
+	color MainColor
+	font-weight 600
+
+#players-analisys-team > div
+
+	display inline-block
+	margin-left 20px
+	opacity 0.8
+	margin-top 20px
+	float left
+
+	& > img
+		height 20px
+		margin-right 1px
+		float left
+
+#players-analisys-table-teamname
+	height 40px
+	line-height 40px
+	border-bottom 1px solid lighten(MainColor, 90%)
+	color MainColor
+	font-weight 600
+	font-size MainFontSize px
+	padding 0 20px
+	text-align left
+	width 100%
+
+#separate
+	width 100%
+	background-color lighten(MainColor, 90%)
+	height 120px
+
+
+	& div
+		width 100%
+		height 120px
+		-webkit-mask-size 60px
+		-webkit-mask-image url(../images/logo.svg)
+		-webkit-mask-repeat no-repeat
+		-webkit-mask-position center
+		background-color lighten(MainColor, 75%)
