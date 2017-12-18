@@ -12,10 +12,9 @@ $('#close').click(function() {
   var window = remote.getCurrentWindow();
   window.close();
 });
-$(document).on('click', 'a[href^="http"]', function(event) {
-  event.preventDefault();
-  shell.openExternal(this.href);
-});
+function OpenLink (link) {
+  shell.openExternal(link);
+}
 function load(bool) {
   if (bool) {
     $("#loader").addClass("loader-on");
