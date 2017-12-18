@@ -76,6 +76,8 @@ function GetPlayersInfo() {
     $(".players-analisys-rank").html("");
     $(".players-analisys-mph #players-analisys-mph").html("");
     $(".players-analisys-links").html("");
+    $("#players-analisys-team-radiant-mph").html("");
+    $("#players-analisys-team-dire-mph").html("");
     for (var i = 0; i < PlayersID.length; i++) {
 
       var PlayerName, PlayerAva, PlayerRank, PlayerAccountID;
@@ -109,24 +111,24 @@ function GetPlayersInfo() {
       }
       $(".players-analisys-table-row").eq(i).find(".players-analisys-rank").html(RMM + " [" + Ranks[Rank] + " " + Stars + "]");
       $(".players-analisys-table-row").eq(i).find(".players-analisys-links").html(PlayerAccountID == null ? ('<a href="#">NO DATA</a>') : ('<a href="https://www.opendota.com/players/' + PlayerAccountID + '">OPENDOTA</a>'));
-      // results[i+10] = results[i+10].sort(SortProp('hero_id'));
+      results[i+10] = results[i+10].sort(SortProp('hero_id'));
     }
-    // HeroesRadiant = results[10];
-    // HeroesDire = results[15];
-    // for (var i = 0; i < 4; i++) {
-    //   for (var z = 0; z < HeroesRadiant.length; z++) {
-    //     HeroesRadiant[z].games += results[11+i][z].games;
-    //     HeroesDire[z].games += results[16+i][z].games;
-    //   }
-    // }
-    // HeroesRadiant = HeroesRadiant.sort(SortProp('games'));
-    // HeroesDire = HeroesDire.sort(SortProp('games'));
-    // HeroesRadiant.reverse();
-    // HeroesDire.reverse();
-    // for (var i = 0; i < 10; i++) {
-    //   $("#players-analisys-team-radiant").append('<img src="http://media.steampowered.com/apps/dota2/images/heroes/' + $.grep(AllHeroes, function(e){ return e.id == HeroesRadiant[i].hero_id; })[0].name.replace('npc_dota_hero_', '') + '_sb.png" alt="">');
-    //   $("#players-analisys-team-dire").append('<img src="http://media.steampowered.com/apps/dota2/images/heroes/' + $.grep(AllHeroes, function(e){ return e.id == HeroesDire[i].hero_id; })[0].name.replace('npc_dota_hero_', '') + '_sb.png" alt="">')
-    // }
+    HeroesRadiant = results[10];
+    HeroesDire = results[15];
+    for (var i = 0; i < 4; i++) {
+      for (var z = 0; z < HeroesRadiant.length; z++) {
+        HeroesRadiant[z].games += results[11+i][z].games;
+        HeroesDire[z].games += results[16+i][z].games;
+      }
+    }
+    HeroesRadiant = HeroesRadiant.sort(SortProp('games'));
+    HeroesDire = HeroesDire.sort(SortProp('games'));
+    HeroesRadiant.reverse();
+    HeroesDire.reverse();
+    for (var i = 0; i < 10; i++) {
+      $("#players-analisys-team-radiant-mph").append('<img src="http://media.steampowered.com/apps/dota2/images/heroes/' + $.grep(AllHeroes, function(e){ return e.id == HeroesRadiant[i].hero_id; })[0].name.replace('npc_dota_hero_', '') + '_sb.png" alt="">');
+      $("#players-analisys-team-dire-mph").append('<img src="http://media.steampowered.com/apps/dota2/images/heroes/' + $.grep(AllHeroes, function(e){ return e.id == HeroesDire[i].hero_id; })[0].name.replace('npc_dota_hero_', '') + '_sb.png" alt="">')
+    }
     load(false);
   }).catch((err) => GetPlayersInfo());
 }
