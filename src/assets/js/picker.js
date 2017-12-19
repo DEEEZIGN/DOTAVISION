@@ -146,19 +146,23 @@ function PastePickerInfo(bool, num, id) {
   $(".notheaderused").addClass("notheader").removeClass("notheaderused").html("");
 
   $.each(Team[num], function(i, v) {
-    if (CounterPicks != 15 || CounterPicksIsThis != 15) {
+    if (CounterPicks != 5 || CounterPicksIsThis != 5) {
       var WR = 0;
       WR = (v.wins / v.games_played) * 100;
       if (WR > avgWinrate) {
-        if (CounterPicksIsThis != 15) {
-          $("#picker-hero-info").first().next().find(".notheader").first().append('<img src="http://media.steampowered.com/apps/dota2/images/heroes/' + AllHeroes[v.hero_id].name.replace('npc_dota_hero_', '') + '_sb.png" alt=""><div><span>' + WR.toFixed() + '</span> </div>');
-          $("#picker-hero-info").first().next().find(".notheader").first().removeClass("notheader").addClass("notheaderused");
+        if (CounterPicksIsThis != 5) {
+          if (id !== v.hero_id) {
+            $("#picker-hero-info").first().next().find(".notheader").first().append('<img src="http://media.steampowered.com/apps/dota2/images/heroes/' + $.grep(AllHeroes, function(e){ return e.id == v.hero_id; })[0].name.replace('npc_dota_hero_', '') + '_sb.png" alt=""><div><span>' + WR.toFixed() + '</span> </div>');
+            $("#picker-hero-info").first().next().find(".notheader").first().removeClass("notheader").addClass("notheaderused");
+          }
           CounterPicksIsThis++;
         }
       } else if (WR < avgWinrate) {
-        if (CounterPicks != 15) {
-          $("#picker-hero-info").first().find(".notheader").first().append('<img src="http://media.steampowered.com/apps/dota2/images/heroes/' + AllHeroes[v.hero_id].name.replace('npc_dota_hero_', '') + '_sb.png" alt=""><div><span>' + WR.toFixed() + '</span></div>');
-          $("#picker-hero-info").first().find(".notheader").first().removeClass("notheader").addClass("notheaderused");
+        if (CounterPicks != 5) {
+          if (id !== v.hero_id) {
+            $("#picker-hero-info").first().find(".notheader").first().append('<img src="http://media.steampowered.com/apps/dota2/images/heroes/' + $.grep(AllHeroes, function(e){ return e.id == v.hero_id; })[0].name.replace('npc_dota_hero_', '') + '_sb.png" alt=""><div><span>' + WR.toFixed() + '</span></div>');
+            $("#picker-hero-info").first().find(".notheader").first().removeClass("notheader").addClass("notheaderused");
+          }
           CounterPicks++;
         }
       }
