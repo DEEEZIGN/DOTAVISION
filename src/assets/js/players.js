@@ -110,7 +110,7 @@ function GetPlayersInfo() {
         RMM = 0;
       }
       $(".players-analisys-table-row").eq(i).find(".players-analisys-rank").html(RMM + " [" + Ranks[Rank] + " " + Stars + "]");
-      $(".players-analisys-table-row").eq(i).find(".players-analisys-links").html(PlayerAccountID == null ? ('<a href="#">NO DATA</a>') : ('<a href="https://www.opendota.com/players/' + PlayerAccountID + '">OPENDOTA</a>'));
+      $(".players-analisys-table-row").eq(i).find(".players-analisys-links").html(PlayerAccountID == null ? ('<a href="#">NO DATA</a>') : ('<a onclick="OpenLink(\'https://www.opendota.com/players/' + PlayerAccountID + '\')" href="#">OPENDOTA</a>'));
       results[i+10] = results[i+10].sort(SortProp('hero_id'));
     }
     HeroesRadiant = results[10];
@@ -137,8 +137,10 @@ function openSummary(bool) {
   $('#popup-overlay div').load('summary.html', function(){
     if (bool) {
       $("#summary-team-name").html("RADIANT");
+      $("#players-analisys-team-mph-popup").html($("#players-analisys-team-radiant-mph").html())
     } else {
       $("#summary-team-name").html("DIRE");
+      $("#players-analisys-team-mph-popup").html($("#players-analisys-team-dire-mph").html())
     }
     $('#popup-wrapper').addClass("active");
   });
