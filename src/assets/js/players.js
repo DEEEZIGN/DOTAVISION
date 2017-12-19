@@ -132,3 +132,14 @@ function GetPlayersInfo() {
     load(false);
   }).catch((err) => GetPlayersInfo());
 }
+
+function openSummary(bool) {
+  $('#popup-overlay div').load('summary.html', function(){
+    if (bool) {
+      $("#summary-team-name").html("RADIANT");
+    } else {
+      $("#summary-team-name").html("DIRE");
+    }
+    $('#popup-wrapper').addClass("active");
+  });
+}
