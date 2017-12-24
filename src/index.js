@@ -4,11 +4,11 @@ var electron = require('electron');
 var app = electron.app;
 if(require('electron-squirrel-startup')) app.quit();
 
-  app.commandLine.appendSwitch('in-process-gpu')
 
 var BrowserWindow = electron.BrowserWindow;
 
-
+// Required for steam overlay to function
+app.commandLine.appendSwitch("in-process-gpu");
 
 var mainWindow = null;
 const settings = require('electron-settings');
