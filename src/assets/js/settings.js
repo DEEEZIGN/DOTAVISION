@@ -10,8 +10,11 @@ function SettingsMPH(date) {
 
 function SettingsTheme(name) {
   settings.set('theme', name);
-  $("#cssstyle").remove();
   $('head').append('<link id="cssstyle" rel="stylesheet" href="./assets/stylus/style'+ settings.get('theme') +'.styl"/>');
+  setTimeout(function(){
+    $('head #cssstyle').eq(0).remove();
+  }, 1000);
+
   LoadSettings();
 }
 function SettingsTotals(limit) {
