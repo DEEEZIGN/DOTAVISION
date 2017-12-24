@@ -18,7 +18,8 @@
         "forge": {
             "make_targets": {
                 "win32": [
-                    "squirrel"
+                    "squirrel",
+                      "zip"
                 ],
                 "darwin": [
                     "zip"
@@ -31,11 +32,13 @@
             "electronPackagerConfig": {
                 "packageManager": "npm",
                 "asar": true,
+                "dir": "portable",
                 "icon": "src/assets/images/dotavision.ico"
             },
             "electronWinstallerConfig": {
                 "name": "DOTAVISION",
                 "setupExe": "Setup.exe",
+                "outputDirectory": "setup",
                 "description": "Analysis app for DOTA 2",
                 "iconUrl": "https://dotavision.ru/favicon.ico",
                 "loadingGif": "src/assets/images/loadinggif.gif",
@@ -45,8 +48,6 @@
             "electronInstallerDebian": {},
             "electronInstallerRedhat": {},
             "github_repository": {
-                "owner": "DEEEZIGN",
-                "name": "DOTAVISION"
             },
             "windowsStoreConfig": {
                 "packageName": "",

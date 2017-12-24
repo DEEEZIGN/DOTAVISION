@@ -20,7 +20,7 @@ function Start() {
     }
     AllHeroes = Heroes;
     load(false);
-  }).catch((err) => console.log(err));
+  }).catch((err) => Start());
 }
  Start();
 $('#inhero').on('input', function() {

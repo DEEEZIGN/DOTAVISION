@@ -59,10 +59,15 @@ function LoadPlayers(Log) {
 }
 
 function GetPlayersInfo() {
-  var promises = new Array(PlayersID.length * 2);
+  var promises = new Array(PlayersID.length * 3);
   for (var i = 0; i < PlayersID.length; i++) {
     var M = new Mika();
     promises[i] = M.getPlayer(PlayersID[i]);
+    if (settings.get('totals') == 0) {
+      promises[i + PlayersID.length * 2] = M.getPlayerTotals(PlayersID[i]);
+    } else {
+      promises[i + PlayersID.length * 2] = M.getPlayerTotals(PlayersID[i], {  "limit": settings.get('totals') });
+    }
     if (settings.get('mph') == 0) {
       promises[i + PlayersID.length] = M.getPlayerHeroes(PlayersID[i]);
     } else {
@@ -78,6 +83,12 @@ function GetPlayersInfo() {
     $(".players-analisys-links").html("");
     $("#players-analisys-team-radiant-mph").html("");
     $("#players-analisys-team-dire-mph").html("");
+    $(".table-totals-efficiency").html("");
+    $(".table-totals-kda").html("");
+    $(".table-totals-xpm").html("");
+    $(".table-totals-gpm").html("");
+    $(".table-totals-damage").html("");
+    $(".table-totals-healing").html("");
     for (var i = 0; i < PlayersID.length; i++) {
 
       var PlayerName, PlayerAva, PlayerRank, PlayerAccountID;
@@ -129,6 +140,51 @@ function GetPlayersInfo() {
       $("#players-analisys-team-radiant-mph").append('<img src="http://media.steampowered.com/apps/dota2/images/heroes/' + $.grep(AllHeroes, function(e){ return e.id == HeroesRadiant[i].hero_id; })[0].name.replace('npc_dota_hero_', '') + '_sb.png" alt="">');
       $("#players-analisys-team-dire-mph").append('<img src="http://media.steampowered.com/apps/dota2/images/heroes/' + $.grep(AllHeroes, function(e){ return e.id == HeroesDire[i].hero_id; })[0].name.replace('npc_dota_hero_', '') + '_sb.png" alt="">')
     }
+
+    // totals
+    var maxTotals = new Array(0,0,0,0,0,0);
+    var allTotals = new Array(0,0,0,0,0,0);
+
+    for (var i = 0; i < PlayersID.length; i++) {
+      if (results[2 * PlayersID.length + i][0].n !== 0) {
+
+        var Totals = new Array(6);
+        Totals[0] = (results[2 * PlayersID.length + i][8].sum / results[2 * PlayersID.length + i][8].n).toFixed();
+        Totals[1] = (results[2 * PlayersID.length + i][3].sum / results[2 * PlayersID.length + i][3].n).toFixed();
+        Totals[2] = (results[2 * PlayersID.length + i][4].sum / results[2 * PlayersID.length + i][4].n).toFixed();
+        Totals[3] = (results[2 * PlayersID.length + i][5].sum / results[2 * PlayersID.length + i][5].n).toFixed();
+        Totals[4] = (results[2 * PlayersID.length + i][13].sum / results[2 * PlayersID.length + i][13].n).toFixed();
+        Totals[5] = (results[2 * PlayersID.length + i][11].sum / results[2 * PlayersID.length + i][11].n).toFixed();
+
+        allTotals[i] = Totals;
+
+        $(".table-totals.fix").eq(i).find(".table-totals-efficiency").html(Totals[0]);
+        $(".table-totals.fix").eq(i).find(".table-totals-kda").html(Totals[1]);
+        $(".table-totals.fix").eq(i).find(".table-totals-gpm").html(Totals[2]);
+        $(".table-totals.fix").eq(i).find(".table-totals-xpm").html(Totals[3]);
+        $(".table-totals.fix").eq(i).find(".table-totals-healing").html(Totals[4]);
+        $(".table-totals.fix").eq(i).find(".table-totals-damage").html(Totals[5]);
+
+      } else {
+          allTotals[i] = 0;
+      }
+    }
+
+    // max totals
+    var tableBlocks = new Array(".table-totals-efficiency",".table-totals-kda",".table-totals-gpm",".table-totals-xpm",".table-totals-healing",".table-totals-damage")
+    for (var i = 0; i < allTotals.length; i++) {
+      for (var z = 0; z < allTotals.length; z++) {
+        if (allTotals[i] != 0 && allTotals[i][z] >= maxTotals[z]) {
+            if (allTotals[i][z] > maxTotals[z]) {
+              $(tableBlocks[z]).removeClass("max");
+            }
+            maxTotals[z] = allTotals[i][z];
+            $(".table-totals.fix").eq(i).find(tableBlocks[z]).addClass("max");
+        }
+      }
+
+    }
+
     load(false);
   }).catch((err) => GetPlayersInfo());
 }
@@ -144,4 +200,9 @@ function openSummary(bool) {
     }
     $('#popup-wrapper').addClass("active");
   });
+}
+
+function openTotals() {
+  $("#PlayersTotals").toggleClass("active");
+  $("#totals").toggleClass("active");
 }

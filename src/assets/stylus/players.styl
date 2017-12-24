@@ -2,6 +2,7 @@
 	height 40px
 	line-height 40px
 	display table
+	padding-right 40px
 	width 100%
 	border-top 1px solid lighten(MainColor, 10%)
 
@@ -145,7 +146,7 @@
 	color MainColor
 	font-weight 600
 	font-size MainFontSize px
-	padding 0 20px
+	padding 0 60px 0px 20px
 	text-align left
 	width 100%
 
@@ -189,3 +190,82 @@
 		height 24px
 		opacity 0.8
 		margin-right 5px
+
+#totals
+	position fixed
+	width 40px
+	bottom 0px
+	right 0px
+	height -webkit-calc(100% - 81px)
+	background lighten(MainColor, 90%)
+	text-align center
+	cursor pointer
+	z-index 99
+	font-weight 600
+
+	&:before
+		display block
+		width 40px
+		height 100%
+		content ''
+		transform rotate(0deg)
+		position absolute
+		-webkit-mask-repeat no-repeat
+		-webkit-mask-position center
+		-webkit-mask-size 8px
+		background-color MainColor
+		-webkit-mask-image url(../images/radiant-arrow.svg)
+
+	&:hover
+		background-color MainColor
+		color MainColorForward
+
+		&:before
+			background-color MainColorForward
+
+	&.active:before
+		transform rotate(180deg)
+
+#PlayersTotals
+	position fixed
+	width -webkit-calc(80% - 40px)
+	top 41px
+	height -webkit-calc(100% - 71px)
+	right -100%
+	background MainColorForward
+
+	&.active
+		right 40px
+
+.table-totals
+	height 40px
+	line-height 40px
+	display flex
+	border-bottom 1px solid lighten(MainColor, 90%)
+
+	&.fix
+		height 41px
+
+	&:last-child
+		border-bottom 0px !important
+
+	& > div
+		font-weight 600
+		width 16.6%
+		float left
+		color MainColor
+		text-align center
+		border-left 1px solid lighten(MainColor, 90%)
+
+		&.max
+			text-decoration underline
+			font-weight bold
+
+	&#table-totals-header
+		background-color MainColor
+		border-bottom 0
+
+		& > div
+			color MainColorForward
+			font-weight 500
+			border-left 1px solid lighten(MainColor, 10%)

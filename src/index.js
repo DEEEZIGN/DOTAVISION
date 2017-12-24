@@ -41,7 +41,9 @@ app.on('ready', function() {
   if (!settings.has('mph')) {
     settings.set('mph', '3');
   };
-
+  if (!settings.has('totals')) {
+    settings.set('mph', '20');
+  };
   mainWindow.loadURL('file://' + __dirname + '/index.html');
 
   mainWindow.on('closed', function() {
