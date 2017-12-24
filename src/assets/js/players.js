@@ -83,12 +83,12 @@ function GetPlayersInfo() {
     $(".players-analisys-links").html("");
     $("#players-analisys-team-radiant-mph").html("");
     $("#players-analisys-team-dire-mph").html("");
-    $(".table-totals-efficiency").html("");
-    $(".table-totals-kda").html("");
-    $(".table-totals-xpm").html("");
-    $(".table-totals-gpm").html("");
-    $(".table-totals-damage").html("");
-    $(".table-totals-healing").html("");
+    $(".table-totals-efficiency").html("").removeClass("max");
+    $(".table-totals-kda").html("").removeClass("max");
+    $(".table-totals-xpm").html("").removeClass("max");
+    $(".table-totals-gpm").html("").removeClass("max");
+    $(".table-totals-damage").html("").removeClass("max");
+    $(".table-totals-healing").html("").removeClass("max");
     for (var i = 0; i < PlayersID.length; i++) {
 
       var PlayerName, PlayerAva, PlayerRank, PlayerAccountID;

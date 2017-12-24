@@ -17,6 +17,9 @@ function SettingsTheme(name) {
 function SettingsTotals(limit) {
   settings.set('totals', limit);
   LoadSettings();
+  if (Started) {
+    ReadFile();
+  }
 }
 function LoadSettings() {
   $(".settingsMPH").removeClass("active");
