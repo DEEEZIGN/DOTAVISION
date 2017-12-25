@@ -1,7 +1,6 @@
 #players-analisys-table
 	height 40px
-	line-height 40px
-	display table
+	display block
 	padding-right 40px
 	width 100%
 	border-top 1px solid lighten(MainColor, 10%)
@@ -17,7 +16,10 @@
 			border 0px
 
 	& > div
-		display table-cell
+		display inline-block
+		height 40px
+		line-height 40px
+		float left
 		padding-left 20px
 		overflow hidden
 		border-right 1px solid lighten(MainColor, 10%)
@@ -26,26 +28,23 @@
 			border 0px
 
 		&:nth-child(1)
-			width 20%
-			min-width 200px
+			width 200px
 			text-align left
 
 		&:nth-child(2)
-			width 10%
-			text-align left
-			min-width 150px
+			padding-left 0
+			text-align center
+			width 150px
 
 		&:nth-child(3)
-			width 40%
+			width -webkit-calc(100% - 480px)
 			position relative
 			text-align center
 
 		&:nth-child(4)
-			min-width 120px
-			max-width 120px
-			padding-right 20px
-			width 1%
-			text-align left
+			width 130px
+			padding-left 0
+			text-align center
 
 	&.players-analisys-table-row
 		background-color MainColorForward
@@ -59,13 +58,13 @@
 			border-color lighten(MainColor, 90%)
 
 #players-analisys-name-ava
-	width 26px
-	height 26px
+	width 25px
+	height 25px
 	opacity 0.8
-	float left
+	display inline-block
+	vertical-align middle
 	background-color lighten(MainColor, 90%)
-	border-radius MainBorderRadius px
-	margin-top 7px
+	border-radius 50%
 	overflow hidden
 	margin-right 10px
 
@@ -79,8 +78,8 @@
 	width -webkit-calc(100% - 50px)
 
 .players-analisys-links > a
-	display block
-	width 82px
+	display inline-block
+	width 90px
 	height 26px
 	text-decoration none
 	text-align center
@@ -172,15 +171,16 @@
 #players-analisys-summary-btn
 	display inline-block
 	margin-left 20px
-	background-color lighten(MainColor, 25%)
+	background-color darken(MainColor, 10%)
 	height 26px
 	float right
 	color MainColorForward
 	line-height 26px
-	padding 0 15px
+	width 90px
+	margin-top 7px
+	text-align center
 	cursor pointer
 	border-radius MainBorderRadius px
-	margin-top 7px
 
 	&:hover
 		background-color MainColor
@@ -196,7 +196,7 @@
 	width 40px
 	bottom 0px
 	right 0px
-	height -webkit-calc(100% - 81px)
+	height -webkit-calc(100% - 80px)
 	background lighten(MainColor, 90%)
 	text-align center
 	cursor pointer
@@ -228,7 +228,7 @@
 
 #PlayersTotals
 	position fixed
-	width -webkit-calc(80% - 40px)
+	width -webkit-calc(100% - 239px)
 	top 41px
 	height -webkit-calc(100% - 71px)
 	right -100%
@@ -242,9 +242,6 @@
 	line-height 40px
 	display flex
 	border-bottom 1px solid lighten(MainColor, 90%)
-
-	&.fix
-		height 41px
 
 	&:last-child
 		border-bottom 0px !important
@@ -264,6 +261,8 @@
 	&#table-totals-header
 		background-color MainColor
 		border-bottom 0
+		height 39px
+		line-height 39px
 
 		& > div
 			color MainColorForward
