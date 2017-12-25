@@ -1,5 +1,5 @@
 #hero-selector
-	width 36vw
+	width 37vw
 	max-width 387px
 	background-color MainColor
 	height -webkit-calc(100vh - 40px)
@@ -82,9 +82,9 @@ ul#heroes
 		height 40px
 		line-height 40px
 		cursor pointer
-		display table-cell
+		display inline-block
 		color MainColor
-		width 50%
+		width 35%
 		text-align center
 		position relative
 		font-size MainFontSize + 1 px
@@ -92,10 +92,10 @@ ul#heroes
 
 		&:nth-child(2n+1):before
 			display block
-			width 10px
+			width 8px
 			height 100%
 			content ''
-			-webkit-mask-size 10px
+			-webkit-mask-size 8px
 			position absolute
 			-webkit-mask-repeat no-repeat
 			-webkit-mask-position center
@@ -105,8 +105,7 @@ ul#heroes
 			background-color lighten(MainColor, 80%)
 
 		&:nth-child(2)
-			width 0px
-			padding 0 30px
+			width 30%
 			cursor default
 			border-left 1px solid lighten(MainColor, 80%)
 			border-right 1px solid lighten(MainColor, 80%)
@@ -119,14 +118,15 @@ ul#heroes
 
 			&:before
 				left 20px
-				-webkit-mask-image url(../images/radiant-arrow.svg)
+				-webkit-mask-image url(../images/arrow.svg)
 
 		&:nth-child(3)
 			padding-right 20px
 
 			&:before
 				right 20px
-				-webkit-mask-image url(../images/dire-arrow.svg)
+				transform rotate(180deg)
+				-webkit-mask-image url(../images/arrow.svg)
 
 .heron
 	display none
