@@ -1,28 +1,41 @@
 'use strict';
 
-var electron = require('electron');
-var app = electron.app;
-if(require('electron-squirrel-startup')) app.quit();
-
-
-var BrowserWindow = electron.BrowserWindow;
-
-// Required for steam overlay to function
-app.commandLine.appendSwitch("in-process-gpu");
-
-var mainWindow = null;
+var {
+  app,
+  BrowserWindow,
+  Tray,
+  Menu
+} = require('electron')
 const settings = require('electron-settings');
 
-app.on('window-all-closed', function() {
+if (require('electron-squirrel-startup')) app.quit();
+var mainWindow = null;
 
-  if (process.platform != 'darwin') {
-    app.quit();
-  }
+// Autolaunch
+var AutoLaunch = require('auto-launch');
+var DVAutoLauncher = new AutoLaunch({
+    name: 'DOTAVISION'
+});
+DVAutoLauncher.enable();
+DVAutoLauncher.isEnabled()
+.then(function(isEnabled){
+    if(isEnabled){
+        return;
+    }
+    DVAutoLauncher.enable();
+})
+.catch(function(err){
 });
 
-app.on('ready', function() {
+// window
+var path = require('path');
+var url = require('url');
+var iconpath = path.join(__dirname + '/assets/images/dotavision.ico');
+var win;
 
-  mainWindow = new BrowserWindow({
+function createWindow() {
+
+  win = new BrowserWindow({
     width: 1100,
     minWidth: 700,
     minHeight: 600,
@@ -30,10 +43,29 @@ app.on('ready', function() {
     height: 600,
     frame: false,
     thickFrame: true,
-
     icon: __dirname + '/assets/images/dotavision.ico'
-  });
+  })
+  win.loadURL(url.format({
+    pathname: path.join(__dirname, 'index.html'),
+  }))
+  var appIcon = new Tray(iconpath);
+  var contextMenu = Menu.buildFromTemplate([
+    {
+      label: 'OPEN DOTAVISION',
+      click: function() {
+        win.show();
+      }
+    },
+    {
+      label: 'QUIT',
+      click: function() {
+        app.isQuiting = true;
+        app.quit();
 
+      }
+    }
+  ])
+  // Settings
   if (!settings.has('theme')) {
     settings.set('theme', 'Default');
   };
@@ -41,12 +73,19 @@ app.on('ready', function() {
     settings.set('mph', '3');
   };
   if (!settings.has('totals')) {
-    settings.set('mph', '20');
+    settings.set('totals', '20');
   };
-  mainWindow.loadURL('file://' + __dirname + '/index.html');
 
-  mainWindow.on('closed', function() {
-
-    mainWindow = null;
+  appIcon.setContextMenu(contextMenu);
+  appIcon.on('click', function(event) {
+    win.isVisible() ? win.hide() : win.show();
   });
-});
+  win.on('close', function(event) {
+    win = null;
+  });
+  win.on('show', function() {
+    appIcon.setHighlightMode('always');
+  });
+
+}
+app.on('ready', createWindow)

@@ -184,8 +184,9 @@ function GetPlayersInfo() {
       }
 
     }
-
     load(false);
+    var window = remote.getCurrentWindow();
+    window.show();
   }).catch((err) => GetPlayersInfo());
 }
 

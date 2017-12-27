@@ -1,10 +1,10 @@
 {
-    "name":        "DOTAVISION",
+    "name": "DOTAVISION",
     "productName": "DOTAVISION",
-    "version":     "1.0.5",
+    "version": "1.0.5",
     "description": "Analysis applications for DOTA 2",
-    "main":        "src/index.js",
-    "scripts":     {
+    "main": "src/index.js",
+    "scripts": {
         "start": "electron-forge start",
         "package": "electron-forge package",
         "make": "electron-forge make",
@@ -19,7 +19,7 @@
             "make_targets": {
                 "win32": [
                     "squirrel",
-                      "zip"
+                    "zip"
                 ],
                 "darwin": [
                     "zip"
@@ -47,8 +47,7 @@
             },
             "electronInstallerDebian": {},
             "electronInstallerRedhat": {},
-            "github_repository": {
-            },
+            "github_repository": {},
             "windowsStoreConfig": {
                 "packageName": "",
                 "name": "dotavision"
@@ -56,6 +55,7 @@
         }
     },
     "dependencies": {
+        "auto-launch": "^5.0.5",
         "electron-compile": "^6.4.2",
         "electron-settings": "^3.1.4",
         "electron-squirrel-startup": "^1.0.0",

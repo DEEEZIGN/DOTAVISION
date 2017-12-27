@@ -13,7 +13,7 @@ $('#minimize').click(function() {
 });
 $('#close').click(function() {
   var window = remote.getCurrentWindow();
-  window.close();
+  window.hide();
 });
 function OpenLink (link) {
   shell.openExternal(link);
