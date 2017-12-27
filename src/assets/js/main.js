@@ -2,9 +2,9 @@
 const remote = require('electron').remote;
 var shell = require('electron').shell;
 const settings = require('electron-settings');
-$('head').append('<link id="cssstyle" rel="stylesheet" href="./assets/stylus/style'+ settings.get('theme') +'.styl"/>');
+$('head').append('<link rel="stylesheet" id="styluslink" href="./assets/stylus/style'+ settings.get('theme') +'.styl"/>');
 setTimeout(function(){
-  $('head #cssstyle').eq(0).remove();
+  $('head #styluslink').eq(0).remove();
 }, 1000);
 
 $('#minimize').click(function() {

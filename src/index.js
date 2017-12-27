@@ -20,7 +20,6 @@ app.on('window-all-closed', function() {
   }
 });
 
-
 app.on('ready', function() {
 
   mainWindow = new BrowserWindow({

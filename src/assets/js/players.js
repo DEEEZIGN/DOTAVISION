@@ -153,8 +153,8 @@ function GetPlayersInfo() {
         Totals[1] = (results[2 * PlayersID.length + i][3].sum / results[2 * PlayersID.length + i][3].n).toFixed();
         Totals[2] = (results[2 * PlayersID.length + i][4].sum / results[2 * PlayersID.length + i][4].n).toFixed();
         Totals[3] = (results[2 * PlayersID.length + i][5].sum / results[2 * PlayersID.length + i][5].n).toFixed();
-        Totals[4] = (results[2 * PlayersID.length + i][13].sum / results[2 * PlayersID.length + i][13].n).toFixed();
-        Totals[5] = (results[2 * PlayersID.length + i][11].sum / results[2 * PlayersID.length + i][11].n).toFixed();
+        Totals[4] = (results[2 * PlayersID.length + i][11].sum / results[2 * PlayersID.length + i][11].n).toFixed();
+        Totals[5] = (results[2 * PlayersID.length + i][13].sum / results[2 * PlayersID.length + i][13].n).toFixed();
 
         allTotals[i] = Totals;
 
@@ -162,8 +162,8 @@ function GetPlayersInfo() {
         $(".table-totals.fix").eq(i).find(".table-totals-kda").html(Totals[1]);
         $(".table-totals.fix").eq(i).find(".table-totals-gpm").html(Totals[2]);
         $(".table-totals.fix").eq(i).find(".table-totals-xpm").html(Totals[3]);
-        $(".table-totals.fix").eq(i).find(".table-totals-healing").html(Totals[4]);
-        $(".table-totals.fix").eq(i).find(".table-totals-damage").html(Totals[5]);
+        $(".table-totals.fix").eq(i).find(".table-totals-damage").html(Totals[4]);
+        $(".table-totals.fix").eq(i).find(".table-totals-healing").html(Totals[5]);
 
       } else {
           allTotals[i] = 0;
@@ -174,7 +174,7 @@ function GetPlayersInfo() {
     var tableBlocks = new Array(".table-totals-efficiency",".table-totals-kda",".table-totals-gpm",".table-totals-xpm",".table-totals-healing",".table-totals-damage")
     for (var i = 0; i < allTotals.length; i++) {
       for (var z = 0; z < allTotals.length; z++) {
-        if (allTotals[i] != 0 && allTotals[i][z] >= maxTotals[z]) {
+        if (!isNaN(parseFloat(allTotals[i])) && allTotals[i][z] >= maxTotals[z]) {
             if (allTotals[i][z] > maxTotals[z]) {
               $(tableBlocks[z]).removeClass("max");
             }
