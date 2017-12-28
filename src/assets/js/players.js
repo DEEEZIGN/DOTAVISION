@@ -171,10 +171,10 @@ function GetPlayersInfo() {
     }
 
     // max totals
-    var tableBlocks = new Array(".table-totals-efficiency",".table-totals-kda",".table-totals-gpm",".table-totals-xpm",".table-totals-healing",".table-totals-damage")
+    var tableBlocks = new Array(".table-totals-efficiency",".table-totals-kda",".table-totals-gpm",".table-totals-xpm",".table-totals-damage",".table-totals-healing")
     for (var i = 0; i < allTotals.length; i++) {
-      for (var z = 0; z < allTotals.length; z++) {
-        if (!isNaN(parseFloat(allTotals[i])) && allTotals[i][z] >= maxTotals[z]) {
+      for (var z = 0; z < tableBlocks.length; z++) {
+        if (allTotals[i][z] >= maxTotals[z]) {
             if (allTotals[i][z] > maxTotals[z]) {
               $(tableBlocks[z]).removeClass("max");
             }
