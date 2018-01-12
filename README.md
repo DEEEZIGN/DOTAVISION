@@ -1,7 +1,6 @@
 # DOTAVISION
-Analysis app for DOTA 2 (Electron app)
-
-Download https://dotavision.ru/ - Setup or portable
+Analysis Electron app for Dota 2
+Download and information https://dotavision.com/
 
 # About
 Won stage of the draft is an important factor to win the match. DOTAVISION program, which analyzes the draft, determines the possible drafts of opponents and teammates, based on the statistics of their recent games, and most effective heroes of each player.
