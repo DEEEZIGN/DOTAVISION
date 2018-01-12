@@ -32,11 +32,11 @@ function StartPreMatch () {
 
 function ReadFile() {
   var Log = fs.readFileSync(FullPathToLog).toString().split('\n');
-  load(true);
+  load();
   LoadPlayers(Log);
   fs.watchFile(FullPathToLog, function() {
     var Log = fs.readFileSync(FullPathToLog).toString().split('\n');
-    load(true);
+    load();
     LoadPlayers(Log);
   });
 }
@@ -184,7 +184,7 @@ function GetPlayersInfo() {
       }
 
     }
-    load(false);
+    load();
     var window = remote.getCurrentWindow();
     window.show();
   }).catch((err) => GetPlayersInfo());

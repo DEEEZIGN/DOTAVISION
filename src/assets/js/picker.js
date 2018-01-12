@@ -11,7 +11,7 @@ for (var i = 0; i < PickAnalisysArray.length; i++) {
   PickAnalisysArray[i] = new Array(5);
 }
 function Start() {
-  load(true);
+  load();
   mika.getHeroes().then((Heroes) => {
     Heroes = Heroes.sort(SortProp('localized_name'));
     for (var i = 0; i < Heroes.length; i++) {
@@ -19,7 +19,7 @@ function Start() {
       $("#heroes").append(Hero);
     }
     AllHeroes = Heroes;
-    load(false);
+    load();
   }).catch((err) => Start());
 }
  Start();
@@ -107,11 +107,11 @@ function ViewPickerInfo(bool, num, id) {
     Team = InfoHeroesDire;
   }
   if (typeof Team[num] == 'undefined') {
-    load(true);
+    load();
     mika.getHeroStatsAgainstHero(id).then((WR) => {
       WR = WR.sort(SortProp('wins'));
       Team[num] = WR.reverse();
-      load(false);
+      load();
 
       PastePickerInfo(bool, num, id);
       PickAnalisys();

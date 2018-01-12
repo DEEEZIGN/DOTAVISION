@@ -11,25 +11,27 @@ $('#minimize').click(function() {
   var window = remote.getCurrentWindow();
   window.minimize();
 });
+
 $('#close').click(function() {
   var window = remote.getCurrentWindow();
   window.hide();
 });
+
 function OpenLink (link) {
   shell.openExternal(link);
 }
-function load(bool) {
-  if (bool) {
-    $("#loader").addClass("loader-on");
-  } else {
-    $("#loader").removeClass("loader-on");
-  }
+
+function load() {
+    $("#loader").toggleClass("loader-on");
 }
 $('.showcontent').click(function() {
+
   $('.showcontent').toggleClass("active");
   $('#players-analisys').toggleClass("hidden");
   $('#picker').toggleClass("hidden");
+
 });
+
 function SortProp(property) {
   var sortOrder = 1;
   if (property[0] === "-") {

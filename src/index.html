@@ -2,7 +2,6 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>DOTAVISION</title>
     <script>
       if (typeof module === 'object') {
@@ -14,10 +13,28 @@
     <link href="https://fonts.googleapis.com/css?family=Rajdhani:300,400,500,600,700" rel="stylesheet">
     <link rel="stylesheet" id="styluslink" href="./assets/stylus/styleDefault.styl" />
   </head>
-  <body>
-    <div id="loader">
-      <div></div>
-    </div>
+  <body id="body">
+    <script>
+
+    import React from 'react';
+    import ReactDOM from 'react-dom';
+
+    class Loading extends React.Component {
+        render() {
+            return (
+              <div id="loader">
+                <div></div>
+              </div>
+            );
+        }
+    }
+
+    // Render to ID content in the DOM
+    ReactDOM.render( < Loading / > ,
+        document.getElementById('body')
+    );
+    </script>
+
     <div id="menu">
       <div></div>
       <div class="showcontent active">DRAFT ANALISYS</div>

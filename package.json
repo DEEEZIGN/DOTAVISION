@@ -60,6 +60,8 @@
         "electron-settings": "^3.1.4",
         "electron-squirrel-startup": "^1.0.0",
         "mika": "^1.2.2",
+        "react": "^0.14.9",
+        "react-dom": "^0.14.9",
         "where-is-steam": "^0.1.1"
     },
     "devDependencies": {
