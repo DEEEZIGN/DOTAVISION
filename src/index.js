@@ -1,46 +1,40 @@
-'use strict';
-var { app, BrowserWindow, Tray, Menu } = require('electron');
+import { app, BrowserWindow, Tray, Menu } from 'electron';
 
-// Squirrel
-if (require('electron-squirrel-startup')) app.quit();
+// Handle creating/removing shortcuts on Windows when installing/uninstalling.
+if (require('electron-squirrel-startup')) { // eslint-disable-line global-require
+  app.quit();
+}
 
-// Autolaunch
-var AutoLaunch = require('auto-launch');
-var DVAutoLauncher = new AutoLaunch({
-  name: 'DOTAVISION'
-});
-DVAutoLauncher.enable();
-DVAutoLauncher.isEnabled().then(function(isEnabled) {
-  if (isEnabled) {
-    return;
-  };
-  DVAutoLauncher.enable();
-}).catch(function(err) {});
-
-const settings = require('electron-settings');
+//const settings = require('electron-settings');
 var path = require('path');
 var url = require('url');
-var iconpath = path.join(__dirname + '/assets/images/dotavision.ico');
-var win;
+var iconpath = path.join(__dirname + '/images/dotavision.ico');
+var win = null;
 
 
 function createWindow() {
 
   // Window settings
   win = new BrowserWindow({
-  width: 1100,
-  minWidth: 700,
+  width: 950,
+  minWidth: 950,
   minHeight: 600,
   maxHeight: 600,
   height: 600,
   frame: false,
   thickFrame: true,
+  backgroundColor: '#395792',
+  show: false,
   icon: iconpath
 });
 
   win.loadURL(url.format({
     pathname: path.join(__dirname, 'index.html'),
   }));
+
+  win.once('ready-to-show', () => {
+     win.show();
+ })
 
   // Tray
   var appIcon = new Tray(iconpath);
@@ -64,25 +58,27 @@ function createWindow() {
     win.isVisible() ? win.hide() : win.show();
   });
 
-  // Hide to tray
   win.on('close', function(event) {
-    win = null;
+    app.quit();
   });
 
   win.on('show', function() {
     appIcon.setHighlightMode('always');
   });
 
-  // Settings defaults
-  if (!settings.has('theme')) {
-    settings.set('theme', 'Default');
-  };
-  if (!settings.has('mph')) {
-    settings.set('mph', '3');
-  };
-  if (!settings.has('totals')) {
-    settings.set('totals', '20');
-  };
-
 }
+
+const isSecondInstance = app.makeSingleInstance((commandLine, workingDirectory) => {
+  // Someone tried to run a second instance, we should focus our window.
+  if (win) {
+    if (win.isMinimized()) win.show()
+    win.focus()
+  }
+
+})
+
+if (isSecondInstance) {
+  app.quit()
+}
+
 app.on('ready', createWindow)

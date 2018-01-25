@@ -1,0 +1,38 @@
+.load
+	position absolute
+	display none
+	z-index 999
+	height calc(100vh - 40px)
+	width 100%
+	overflow hidden
+	bottom 0
+	background-color lighten(MainColorDark, 10%)
+
+	&.active
+		display block
+
+	.logo
+		height 60px
+		position absolute
+		width 60px
+		left 50%
+		top 50%
+		margin -30px
+		-webkit-mask-size 100%
+		-webkit-mask-image url(images/logo.svg)
+		-webkit-mask-repeat no-repeat
+		-webkit-mask-position center
+		background-color lighten(MainColor, 100%)
+		-webkit-animation loadAnimation .5s infinite cubic-bezier(.215,.61,.355,1)
+		animation loadAnimation .5s infinite cubic-bezier(.215,.61,.355,1)
+
+@keyframes loadAnimation {
+	0%, to {
+		-webkit-transform: scale(1);
+		transform: scale(1);
+	}
+	50% {
+		-webkit-transform: scale(.7);
+		transform: scale(.7);
+	}
+}

@@ -1,74 +1,82 @@
 {
-    "name": "DOTAVISION",
-    "productName": "DOTAVISION",
-    "version": "1.0.6",
-    "description": "Analysis applications for DOTA 2",
-    "main": "src/index.js",
-    "scripts": {
-        "start": "electron-forge start",
-        "package": "electron-forge package",
-        "make": "electron-forge make",
-        "publish": "electron-forge publish",
-        "lint": "eslint src --color"
-    },
-    "keywords": [],
-    "author": "DEEEZIGN",
-    "license": "MIT",
-    "config": {
-        "forge": {
-            "make_targets": {
-                "win32": [
-                    "squirrel",
-                    "zip"
-                ],
-                "darwin": [
-                    "zip"
-                ],
-                "linux": [
-                    "deb",
-                    "rpm"
-                ]
-            },
-            "electronPackagerConfig": {
-                "packageManager": "npm",
-                "asar": true,
-                "dir": "portable",
-                "icon": "src/assets/images/dotavision.ico"
-            },
-            "electronWinstallerConfig": {
-                "name": "DOTAVISION",
-                "setupExe": "Setup.exe",
-                "outputDirectory": "setup",
-                "description": "Analysis app for DOTA 2",
-                "iconUrl": "https://dotavision.ru/favicon.ico",
-                "loadingGif": "src/assets/images/loadinggif.gif",
-                "setupIcon": "src/assets/images/dotavision.ico",
-                "noMsi": true
-            },
-            "electronInstallerDebian": {},
-            "electronInstallerRedhat": {},
-            "github_repository": {},
-            "windowsStoreConfig": {
-                "packageName": "",
-                "name": "dotavision"
-            }
-        }
-    },
-    "dependencies": {
-        "auto-launch": "^5.0.5",
-        "electron-compile": "^6.4.2",
-        "electron-settings": "^3.1.4",
-        "electron-squirrel-startup": "^1.0.0",
-        "mika": "^1.2.2",
-        "react": "^0.14.9",
-        "react-dom": "^0.14.9",
-        "where-is-steam": "^0.1.1"
-    },
-    "devDependencies": {
-        "babel-plugin-transform-async-to-generator": "^6.24.1",
-        "electron-prebuilt-compile": "1.7.9",
-        "babel-preset-env": "^1.6.1",
-        "babel-preset-react": "^6.24.1",
-        "electron-forge": "^4.1.6"
+  "name": "dotavision",
+  "productName": "Dotavision",
+  "version": "1.1.0",
+  "description": "Analysis app for Dota 2",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make",
+    "publish": "electron-forge publish",
+    "lint": "echo \"No linting configured\""
+  },
+  "keywords": [],
+  "author": "deeezign@ya.ru",
+  "license": "MIT",
+  "config": {
+    "forge": {
+      "make_targets": {
+        "win32": [
+          "squirrel"
+        ],
+        "darwin": [
+          "zip"
+        ],
+        "linux": [
+          "deb",
+          "rpm"
+        ]
+      },
+      "electronPackagerConfig": {
+        "packageManager": "npm",
+        "asar": true,
+        "dir": "portable",
+        "icon": "src/images/dotavision.ico"
+      },
+      "electronWinstallerConfig": {
+        "name": "Dotavision",
+        "setupExe": "DotavisionSetup.exe",
+        "outputDirectory": "setup",
+        "description": "Analysis app for Dota 2",
+        "iconUrl": "https://dotavision.ru/favicon.ico",
+        "loadingGif": "src/images/loadinggif.gif",
+        "setupIcon": "src/images/dotavision.ico",
+        "noMsi": true
+      },
+      "electronInstallerDebian": {},
+      "electronInstallerRedhat": {},
+      "github_repository": {
+        "owner": "",
+        "name": ""
+      },
+      "windowsStoreConfig": {
+        "packageName": "",
+        "name": "dotavision"
+      }
     }
+  },
+  "dependencies": {
+    "electron-compile": "^6.4.2",
+    "electron-i18n": "^0.49.0",
+    "electron-settings": "^3.1.4",
+    "electron-squirrel-startup": "^1.0.0",
+    "electron-stylus": "^0.1.1",
+    "google-analytics-electron": "^0.1.2",
+    "i18n": "^0.8.3",
+    "mika": "^1.3.0",
+    "vue": "^2.5.13",
+    "vueify": "^9.4.1",
+    "where-is-steam": "^0.1.1"
+  },
+  "devDependencies": {
+    "babel-plugin-transform-async-to-generator": "^6.24.1",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "electron-forge": "^4.2.0",
+    "electron-prebuilt-compile": "1.7.9",
+    "stylus": "^0.54.5",
+    "stylus-loader": "^3.0.1",
+    "vue-devtools": "^3.1.9"
+  }
 }
